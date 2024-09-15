@@ -10,7 +10,6 @@ const Navbar = () => {
         <li className="navbox"><a className="navelem" href="aboutus">about us</a></li>
         <li className="navbox"><a className="navelem" href="explore">explore hearths</a></li>
         <li className="navbox"><a className="navelem" href="houseEntry">list a hearth</a></li>
-        <li className="navbox"><a className="navelem" href="music.html">booked listings</a></li>
         <li className="navbox"><a className="navelem" href="profileSettings">profile</a></li>
       </ul>
     );
