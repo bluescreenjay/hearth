@@ -12,7 +12,7 @@ export default function Home() {
   return (
    <>
       <Helmet>
-        <title>Hearth | Home</title>
+        <title>Hearth | Aminah's Page</title>
         <meta name="description" content="Find Your New Home" />
       </Helmet>
         <Navbar />
@@ -20,9 +20,6 @@ export default function Home() {
         <Link href="/auth"> {/* Link to login page */}
             <button>Log In to Explore Listings</button>
           </Link>
-          <Link href="/profile-settings"> {/* Link to profile settings page */}
-        <button>Go to Profile Settings</button>
-      </Link>
     </>
   );
 }

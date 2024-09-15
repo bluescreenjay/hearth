@@ -10,7 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         background: "var(--background)",
+        ///background: "#ffffff",
         foreground: "var(--foreground)",
+        ///foreground: "#ffffff",
+        'hearth-navy': '#0C1F2D'
       },
     },
   },
