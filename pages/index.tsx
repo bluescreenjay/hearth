@@ -24,7 +24,7 @@ export default function Home() {
           <Link href="/profile-settings"> {/* Link to profile settings page */}
         <button>Go to Profile Settings</button>
       </Link>
-      <Modal isOpen = {true}
+      <Modal isOpen = {false}
       onClose={() => console.log('Modal closed')} 
       onSubmit={() => console.log('Modal submitted')} />
     </>

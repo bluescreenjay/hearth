@@ -1,8 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
-import Link from 'next/link'; // Import Link from next/link
+import Link from 'next/link';
+import Navbar from './navbar';
 
-
-// Define types for state
 interface Services {
   childcare: boolean;
   elderlyCare: boolean;
@@ -20,7 +19,6 @@ const ProfileSettings: React.FC = () => {
   });
   const [description, setDescription] = useState<string>('');
 
-  // Handle file input change
   const handlePhotoChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -32,7 +30,6 @@ const ProfileSettings: React.FC = () => {
     }
   };
 
-  // Handle checkbox changes
   const handleServiceChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setServices((prevServices) => ({
@@ -41,98 +38,92 @@ const ProfileSettings: React.FC = () => {
     }));
   };
 
-  // Handle textarea changes
   const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(event.target.value);
   };
 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    
+    const data = {
+      profilePhoto,
+      services,
+      description,
+    };
+
+    const response = await fetch('/api/saveProfile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      alert('Profile saved successfully!');
+    } else {
+      alert('Failed to save profile.');
+    }
+  };
+
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <h1>Profile Settings</h1>
+    <>
+    <Navbar />
+    <form onSubmit={handleSubmit} className="profile-settings-container">
+     
 
-      {/* Link to go back to the home page */}
-      <Link href="/">
-        <a style={{ display: 'block', marginBottom: '20px' }}>Back to Home</a>
-      </Link>
+     <h1 className="rubik-title">Submit A Profile</h1>
 
-      {/* Profile Photo Section */}
-      <div>
-        <h2>Profile Photo</h2>
+
+      <div className="section">
+        <h2 className="section-title">Profile Photo</h2>
         <input
           type="file"
           accept="image/*"
           onChange={handlePhotoChange}
-          style={{ display: 'block', margin: '10px 0' }}
+          className="file-input"
         />
         {profilePhoto && (
           <img
             src={profilePhoto as string}
             alt="Profile"
-            style={{ width: '150px', height: '150px', borderRadius: '50%' }}
+            className="profile-photo"
           />
         )}
       </div>
 
-      {/* Services Section */}
-      <div>
-        <h2>Services</h2>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="childcare"
-              checked={services.childcare}
-              onChange={handleServiceChange}
-            />
-            Childcare
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="elderlyCare"
-              checked={services.elderlyCare}
-              onChange={handleServiceChange}
-            />
-            Elderly Care
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="companionship"
-              checked={services.companionship}
-              onChange={handleServiceChange}
-            />
-            Companionship
-          </label>
-        </div>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              name="housekeeping"
-              checked={services.housekeeping}
-              onChange={handleServiceChange}
-            />
-            Housekeeping
-          </label>
+      <div className="section">
+        <h2 className="section-title">Services</h2>
+        <div className="checkbox-group">
+          {['childcare', 'elderlyCare', 'companionship', 'housekeeping'].map((service) => (
+            <label key={service} className="checkbox-label">
+              <input
+                type="checkbox"
+                name={service}
+                checked={services[service as keyof Services]}
+                onChange={handleServiceChange}
+                className="checkbox-input"
+              />
+              {service.charAt(0).toUpperCase() + service.slice(1).replace(/([A-Z])/g, ' $1')}
+            </label>
+          ))}
         </div>
       </div>
 
-      {/* Description Section */}
-      <div>
-        <h2>Description</h2>
+      <div className="section">
+        <h2 className="section-title">Description</h2>
         <textarea
           value={description}
           onChange={handleDescriptionChange}
-          rows={10}
-          style={{ width: '100%', padding: '10px', boxSizing: 'border-box' }}
+          rows={6}
+          className="description-input"
+          placeholder="Write a brief description..."
         />
       </div>
-    </div>
+
+      <button type="submit" className="submit-button">Submit</button>
+    </form>
+    </>
   );
 };
 

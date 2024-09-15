@@ -76,3 +76,72 @@ body {
     text-wrap: balance;
   }
 }
+
+.profile-settings-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.back-link {
+  display: block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #0070f3;
+  font-size: 16px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  color: #555;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.file-input {
+  display: block;
+  margin: 10px 0;
+  padding: 5px;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-top: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-label {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #444;
+}
+
+.checkbox-input {
+  margin-right: 10px;
+}
+
+.description-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
