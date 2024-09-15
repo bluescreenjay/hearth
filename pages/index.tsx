@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { AuthProvider } from "@propelauth/react";
 import {Rubik} from 'next/font/google';
 import Navbar from './navbar';
+import Modal from './Modal'; // Importing Modal component
 
 //landing page before login
 
@@ -23,6 +24,9 @@ export default function Home() {
           <Link href="/profile-settings"> {/* Link to profile settings page */}
         <button>Go to Profile Settings</button>
       </Link>
+      <Modal isOpen = {true}
+      onClose={() => console.log('Modal closed')} 
+      onSubmit={() => console.log('Modal submitted')} />
     </>
   );
 }

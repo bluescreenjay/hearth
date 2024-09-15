@@ -1,6 +1,5 @@
 import Logo from "./components/Navbar/logo";
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import profile from './profileSettings';
 
 const Navbar = () => {
